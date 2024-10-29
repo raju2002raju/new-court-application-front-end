@@ -1,0 +1,13 @@
+.output-section{
+       display: flex;
+       justify-content: space-between;
+        gap: 10px;
+}
+
+.height{
+    height: 68vh;
+}
+
+.w-450{
+    width: 450px;
+}
