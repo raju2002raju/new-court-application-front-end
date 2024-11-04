@@ -18,7 +18,6 @@ const Home = () => {
   const [documentText, setDocumentText] = useState('');
   const [showPreview, setShowPreview] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [sections, setSections] = useState([]);
 
 
   useEffect(() => {
@@ -48,8 +47,8 @@ const Home = () => {
     \n  ${data.petitioner.father_name}
     \n  ${data.petitioner.age}
     \n  ${data.petitioner.residence}`,
-
-        'VERSUS',
+data.Versus && `${data.Versus}`
+        ,
         data.respondent &&
         `\n ${data.respondent.name}
         \n  ${data.respondent.father_name}
@@ -92,9 +91,9 @@ const Home = () => {
     }
   };
 
-  const centerText = (text) => {
+  const   centerText = (text) => {
     return text.toUpperCase();
-
+  
   };
   
   const getFieldContext = (text, field) => {
@@ -172,6 +171,8 @@ const Home = () => {
       if (!data.correctedText) {
         throw new Error('No corrected text in response');
       }
+
+  
 
       // Store the original text
       setDocumentText(data.correctedText);
@@ -431,8 +432,8 @@ const Home = () => {
 
              {/* Preview/Export Panel */}
              {showPreview && (
-               <div className=" flex items-center justify-center p-4">
-                 <div className="bg-white rounded-lg shadow-xl w-6/12 p-6">
+               <div className=" flex items-center justify-center p-4 w-3/6">
+                 <div className="bg-white rounded-lg shadow-xl p-6 w-full">
                    <div className="flex justify-between items-center mb-4">
                      <h3 className="text-xl font-semibold">Document Preview & Export</h3>
                      <button 
@@ -485,9 +486,12 @@ const Home = () => {
                        </button>
                      </div>
                      <ChatBot 
-                       missingFields={missingFields}
-                       onFieldUpdate={updateMissingField}
-                     />
+  missingFields={missingFields}
+  onFieldUpdate={updateMissingField}
+  data={templates} 
+  correctedText={correctedText}
+/>
+
                    </div>
                  ) : (
                    <button
@@ -511,4 +515,5 @@ const Home = () => {
 };
 
 export default Home;
+
 
